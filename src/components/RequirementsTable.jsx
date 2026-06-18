@@ -36,46 +36,38 @@ return (
       </p>
     </div>
 
-    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {requirements.map((req) => (
-        <div
-          key={req.id}
-          className="group rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-        >
-          <div className="flex items-start justify-between">
-            <div>
-              <h3 className="text-xl font-bold text-slate-900">
-                {req.company_name}
-              </h3>
-
-              <p className="mt-2 text-sm text-slate-500">
-                📍 {req.location}
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-sky-100 px-3 py-2 text-sm font-semibold text-sky-700">
-              {req.openings} Open
-            </div>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700">
-              {req.experience}
-            </span>
-
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
-              {req.gender}
-            </span>
-          </div>
-
-          <div className="mt-6 border-t border-slate-100 pt-5">
-            <button className="w-full rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-sky-600">
-              Apply Now
-            </button>
-          </div>
-        </div>
-      ))}
+    <div className="space-y-5">
+  {requirements.map((req) => (
+  <div
+    key={req.id}
+    className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-lg"
+  >
+    <div className="font-bold text-slate-900 min-w-[150px]">
+      {req.company_name}
     </div>
+
+    <div className="text-slate-600 min-w-[120px]">
+      📍 {req.location}
+    </div>
+
+    <div className="text-slate-600 min-w-[100px]">
+      🎓 {req.experience}
+    </div>
+
+    <div className="text-slate-600 min-w-[120px]">
+      👤 {req.gender}
+    </div>
+
+    <div className="rounded-full bg-sky-100 px-3 py-1 text-sm font-semibold text-sky-700">
+      {req.openings} Open
+    </div>
+
+    <button className="rounded-xl bg-sky-500 px-5 py-2 text-sm font-semibold text-white hover:bg-sky-600">
+      Apply Now
+    </button>
+  </div>
+))}
+</div>
   </section>
 );
 

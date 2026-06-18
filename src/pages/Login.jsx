@@ -34,7 +34,13 @@ function Login() {
           </h1>
         </div>
 
-        <div className="space-y-6">
+        <form
+          className="space-y-6"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleLogin();
+          }}
+        >
           <div>
             <label>Email</label>
 
@@ -44,6 +50,7 @@ function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-2 w-full rounded-xl border p-3"
+              required
             />
           </div>
 
@@ -56,16 +63,17 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-2 w-full rounded-xl border p-3"
+              required
             />
           </div>
 
           <button
-            onClick={handleLogin}
-            className="w-full rounded-xl bg-blue-600 text-white py-3"
+            type="submit"
+            className="w-full rounded-xl bg-blue-600 py-3 text-white transition hover:bg-blue-700"
           >
             Login
           </button>
-        </div>
+        </form>
       </div>
     </section>
   );
