@@ -51,7 +51,7 @@ function Footer() {
             </h3>
 
             <div className="space-y-2 text-slate-300">
-              <p>+91 99999 99999</p>
+              <p>+91 9999999999</p>
               <p>operations@basilmanpower.com</p>
               <p>Mumbai, Maharashtra</p>
 

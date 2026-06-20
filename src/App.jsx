@@ -44,7 +44,7 @@ const isAdminPage =
   location.pathname.startsWith("/admin") &&
   location.pathname !== "/admin";
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-900">
       {!isAdminPage && <Navbar />}
       <main className={isAdminPage ? "" : "pt-24"}>
         <Routes>

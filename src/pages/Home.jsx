@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import HowItWorks from "../components/HowItWorks";
 import Hero from "../components/Hero";
-import CTASection from "../components/CTASection";
 import RequirementsTable from "../components/RequirementsTable";
 import TrustedBrands from "../components/TrustedBrands";
 import { supabase } from "../services/supabase";
@@ -122,7 +121,7 @@ const fetchStats = async () => {
       <section className="mx-auto max-w-7xl px-4 py-16">
         <TrustedBrands />
         <HowItWorks />
-        <CTASection />
+        
       </section>
 
     </div>

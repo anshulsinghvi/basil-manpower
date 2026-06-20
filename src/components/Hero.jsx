@@ -41,18 +41,16 @@ function Hero({ websiteStats })  {
               </p>
 
               {/* Buttons */}
-              <div className="mt-10 flex flex-wrap gap-4">
+             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <Link
                   to="/developers"
-                  className="rounded-2xl border border-yellow-500 px-8 py-4 font-semibold text-yellow-400 transition-all hover:bg-yellow-500 hover:text-black"
-                >
+                  className="w-full sm:w-auto rounded-2xl border border-yellow-500 px-8 py-4 text-center font-semibold text-yellow-400">
                   Hire Staff
                 </Link>
 
                 <Link
                   to="/telecaller"
-                  className="rounded-2xl bg-yellow-500 px-8 py-4 font-semibold text-black transition-all hover:bg-yellow-400"
-                >
+                  className="w-full sm:w-auto rounded-2xl bg-yellow-500 px-8 py-4 text-center font-semibold text-black">
                   Apply For Jobs
                 </Link>
               </div>
@@ -79,7 +77,7 @@ function Hero({ websiteStats })  {
 
             {/* Right Side Stats */}
             
-            <div className="grid gap-6 sm:grid-cols-2 lg:max-w-xl lg:ml-auto">
+            <div className="hidden lg:grid gap-6 lg:max-w-xl lg:ml-auto lg:grid-cols-2">
 
 
               <div className="rounded-3xl border border-yellow-500/20 bg-white/5 p-6 backdrop-blur">

@@ -7,8 +7,12 @@
    PREMIUM DESIGN SYSTEM
 =========================== */
 
-:root {
-  color-scheme: light;
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 html {
@@ -60,9 +64,7 @@ body {
   color: white;
 }
 
-/* ===========================
-   GLASSMORPHISM
-=========================== */
+/* GLASSMORPHISM */
 
 .glass {
   background: rgba(255, 255, 255, 0.08);
