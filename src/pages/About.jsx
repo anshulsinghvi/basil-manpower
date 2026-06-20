@@ -10,31 +10,7 @@ import {
 } from "lucide-react";
 
 function About() {
-  const stats = [
-    { number: "12,500+", label: "Candidates" },
-    { number: "25+", label: "Developers" },
-    { number: "100+", label: "Openings" },
-    { number: "10+", label: "Years Experience" },
-  ];
 
-  const features = [
-    {
-      icon: <ShieldCheck size={32} />,
-      title: "Verified Candidates",
-    },
-    {
-      icon: <Clock3 size={32} />,
-      title: "Fast Hiring",
-    },
-    {
-      icon: <Building2 size={32} />,
-      title: "Industry Expertise",
-    },
-    {
-      icon: <Headphones size={32} />,
-      title: "Dedicated Support",
-    },
-  ];
 
   return (
     <div className="bg-white">
