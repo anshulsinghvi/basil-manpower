@@ -3,6 +3,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Telecaller from './pages/Telecaller';
+import Developers from './pages/Developers';
+import Careers from './pages/Careers';
+import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Dashboard from './admin/Dashboard';
@@ -49,6 +52,9 @@ const isAdminPage =
   <Route path="/telecaller" element={<Telecaller />} />
   <Route path="/contact" element={<Contact />} />
   <Route path="/admin" element={<Login />} />
+  <Route path="/developers" element={<Developers />} />
+<Route path="/careers" element={<Careers />} />
+<Route path="/about" element={<About />} />
   <Route
   path="/admin/dashboard"
   element={

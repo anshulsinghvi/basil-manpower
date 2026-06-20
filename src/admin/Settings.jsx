@@ -9,6 +9,7 @@ const Settings = () => {
   const [telecallersCount, setTelecallersCount] = useState("");
   const [developersCount, setDevelopersCount] = useState("");
   const [experienceYears, setExperienceYears] = useState("");
+  const [specializedRoles, setSpecializedRoles] = useState("");
 
   useEffect(() => {
     loadSettings();
@@ -28,6 +29,7 @@ const Settings = () => {
       setTelecallersCount(data.telecallers_count || "");
       setDevelopersCount(data.developers_count || "");
       setExperienceYears(data.experience_years || "");
+      setSpecializedRoles(data.specialized_roles || "");
     }
   };
 
@@ -40,6 +42,7 @@ const Settings = () => {
         telecallers_count: telecallersCount,
         developers_count: developersCount,
         experience_years: experienceYears,
+        specialized_roles: specializedRoles,
       })
       .eq("id", 2);
 
@@ -64,7 +67,7 @@ const Settings = () => {
         </div>
 
         <div className="grid gap-8 xl:grid-cols-2">
-          
+
           {/* Contact Information */}
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-lg">
             <h2 className="mb-6 text-2xl font-bold text-slate-900">
@@ -107,9 +110,10 @@ const Settings = () => {
             </h2>
 
             <div className="space-y-5">
+
               <div>
                 <label className="mb-2 block text-sm font-semibold text-slate-700">
-                  Verified Telecallers
+                  Verified Candidates
                 </label>
 
                 <input
@@ -122,13 +126,26 @@ const Settings = () => {
 
               <div>
                 <label className="mb-2 block text-sm font-semibold text-slate-700">
-                  Happy Developers
+                  Developers Served
                 </label>
 
                 <input
                   type="text"
                   value={developersCount}
                   onChange={(e) => setDevelopersCount(e.target.value)}
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-sky-500"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-slate-700">
+                  Specialized Roles
+                </label>
+
+                <input
+                  type="text"
+                  value={specializedRoles}
+                  onChange={(e) => setSpecializedRoles(e.target.value)}
                   className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-sky-500"
                 />
               </div>
@@ -145,6 +162,7 @@ const Settings = () => {
                   className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-sky-500"
                 />
               </div>
+
             </div>
 
             <button
@@ -153,6 +171,7 @@ const Settings = () => {
             >
               Save Settings
             </button>
+
           </div>
 
         </div>

@@ -1,11 +1,12 @@
-
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "Home", path: "/" },
-  { label: "Telecaller", path: "/telecaller" },
+  { label: "For Developers", path: "/developers" },
+  { label: "Careers", path: "/careers" },
+  { label: "About Us", path: "/about" },
   { label: "Contact Us", path: "/contact" },
 ];
 
@@ -15,38 +16,38 @@ function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8">
-        <div className="glass flex items-center justify-between rounded-[24px] border border-white/20 px-6 py-4 shadow-premium">
+        <div className="flex items-center justify-between rounded-2xl border border-yellow-500/20 bg-slate-950/95 px-6 py-4 backdrop-blur-xl shadow-2xl">
 
           {/* Logo */}
-          <Link to="/" className="group flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <img
-  src="/logo.jpeg"
-  alt="Basil Manpower"
-  className="h-14 w-auto object-contain"
-/>
+              src="/logo.jpeg"
+              alt="Basil Manpower"
+              className="h-14 w-auto object-contain"
+            />
 
             <div>
-              <h1 className="text-lg font-bold text-slate-900">
-                Basil Manpower
+              <h1 className="text-lg font-bold text-white">
+                BASIL MANPOWER
               </h1>
 
-              <p className="text-xs text-slate-500">
-                Recruitment Network
+              <p className="text-xs text-yellow-400">
+                Premium Recruitment Network
               </p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-2 md:flex">
+          <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `rounded-2xl px-5 py-3 text-sm font-semibold transition-all duration-300 ${
+                  `text-sm font-semibold transition-all duration-300 ${
                     isActive
-                      ? "bg-sky-500 text-white shadow-lg shadow-sky-500/30"
-                      : "text-slate-700 hover:bg-white/60"
+                      ? "text-yellow-400"
+                      : "text-white hover:text-yellow-400"
                   }`
                 }
               >
@@ -55,38 +56,35 @@ function Navbar() {
             ))}
           </nav>
 
-          {/* Right CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Right Buttons */}
+          <div className="hidden md:flex items-center gap-4">
             <Link
-              to="/admin"
-              className="rounded-2xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-white"
+              to="/developers"
+              className="rounded-xl border border-yellow-500 px-6 py-3 text-sm font-semibold text-yellow-400 transition-all duration-300 hover:bg-yellow-500 hover:text-black"
             >
-              Admin Login
+              Hire Staff
             </Link>
 
             <Link
               to="/telecaller"
-              className="btn-premium rounded-2xl px-5 py-3 text-sm font-semibold"
+              className="rounded-xl bg-yellow-500 px-6 py-3 text-sm font-semibold text-black transition-all duration-300 hover:bg-yellow-400"
             >
-              Apply Now
+              Apply For Jobs
             </Link>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Toggle */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden"
+            className="text-white md:hidden"
           >
-            {open ? (
-              <X size={26} />
-            ) : (
-              <Menu size={26} />
-            )}
+            {open ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
 
+        {/* Mobile Menu */}
         {open && (
-          <div className="glass mt-3 rounded-[24px] p-4 shadow-premium md:hidden">
+          <div className="mt-3 rounded-2xl border border-yellow-500/20 bg-slate-950 p-4 shadow-2xl md:hidden">
             <div className="space-y-2">
               {navItems.map((item) => (
                 <NavLink
@@ -94,10 +92,10 @@ function Navbar() {
                   to={item.path}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `block rounded-2xl px-4 py-3 text-sm font-semibold ${
+                    `block rounded-xl px-4 py-3 text-sm font-semibold ${
                       isActive
-                        ? "bg-sky-500 text-white"
-                        : "text-slate-700 hover:bg-white/50"
+                        ? "bg-yellow-500 text-black"
+                        : "text-white hover:bg-yellow-500/10 hover:text-yellow-400"
                     }`
                   }
                 >
@@ -106,10 +104,17 @@ function Navbar() {
               ))}
 
               <Link
-                to="/admin"
-                className="block rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700"
+                to="/developers"
+                className="block rounded-xl border border-yellow-500 px-4 py-3 text-center text-sm font-semibold text-yellow-400"
               >
-                Admin Login
+                Hire Staff
+              </Link>
+
+              <Link
+                to="/telecaller"
+                className="block rounded-xl bg-yellow-500 px-4 py-3 text-center text-sm font-semibold text-black"
+              >
+                Apply For Jobs
               </Link>
             </div>
           </div>
