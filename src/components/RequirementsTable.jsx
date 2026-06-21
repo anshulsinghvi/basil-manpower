@@ -21,6 +21,7 @@ const RequirementsTable = () => {
   };
 
   return (
+        
     <section className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_24px_60px_rgba(15,23,42,0.08)]">
       
       <div className="mb-10 text-center">
@@ -83,10 +84,10 @@ const RequirementsTable = () => {
   className="inline-block rounded-xl border border-yellow-500 px-6 py-3 font-semibold text-yellow-700 transition hover:bg-yellow-500 hover:text-black"
 >
   View All Opportunities
-</Link>
-      
-
+  </Link>
+    
     </section>
+
   );
 };
 

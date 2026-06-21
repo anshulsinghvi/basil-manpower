@@ -11,20 +11,53 @@ const [role, setRole] = useState("");
 const [previousWork, setPreviousWork] = useState("");
 
 const handleSubmit = async () => {
-  if (!role) {
-    alert("Please select a role");
+  if (!role.trim()) {
+    alert("Please enter the role you are applying for");
     return;
   }
 
-  if (
-    !fullName ||
-    !phone ||
-    !email ||
-    !location ||
-    !preferredLocation ||
-    !previousWork
-  ) {
-    alert("Please fill all fields");
+  if (!fullName.trim()) {
+    alert("Please enter your full name");
+    return;
+  }
+
+  if (fullName.trim().length < 3) {
+    alert("Full name must be at least 3 characters");
+    return;
+  }
+
+  if (!phone) {
+    alert("Please enter mobile number");
+    return;
+  }
+
+  if (!/^[6-9]\d{9}$/.test(phone)) {
+    alert("Please enter a valid 10-digit mobile number");
+    return;
+  }
+
+  if (!email.trim()) {
+    alert("Please enter email address");
+    return;
+  }
+
+  if (!/\S+@\S+\.\S+/.test(email)) {
+    alert("Please enter a valid email address");
+    return;
+  }
+
+  if (!location.trim()) {
+    alert("Please enter current location");
+    return;
+  }
+
+  if (!preferredLocation.trim()) {
+    alert("Please enter preferred work location");
+    return;
+  }
+
+  if (!previousWork.trim()) {
+    alert("Please enter previous work details");
     return;
   }
 
@@ -43,31 +76,32 @@ const handleSubmit = async () => {
     .from("candidates")
     .insert([
       {
-        full_name: fullName,
+        full_name: fullName.trim(),
         phone,
-        email,
-        role,
-        location,
+        email: email.trim(),
+        role: role.trim(),
+        location: location.trim(),
         experience,
-        preferred_location: preferredLocation,
-        previous_work: previousWork,
+        preferred_location: preferredLocation.trim(),
+        previous_work: previousWork.trim(),
       },
     ]);
 
   if (error) {
     alert(error.message);
-  } else {
-    alert("Registration Successful");
-
-    setFullName("");
-    setPhone("");
-    setEmail("");
-    setRole("");
-    setLocation("");
-    setExperience("");
-    setPreferredLocation("");
-    setPreviousWork("");
+    return;
   }
+
+  alert("Registration Successful ✅");
+
+  setFullName("");
+  setPhone("");
+  setEmail("");
+  setRole("");
+  setLocation("");
+  setExperience("Fresher");
+  setPreferredLocation("");
+  setPreviousWork("");
 };
   
 return (
@@ -101,7 +135,7 @@ return (
 
     <input
       type="text"
-      placeholder="Telecaller / GRE / Hostess / Valet"
+      placeholder=""
       value={role}
       onChange={(e) => setRole(e.target.value)}
       className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-white placeholder-slate-500 outline-none transition focus:border-sky-400"
@@ -130,12 +164,15 @@ return (
       </label>
 
       <input
-        type="tel"
-        placeholder="+91"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-white"
-      />
+  type="tel"
+  placeholder=""
+  value={phone}
+  maxLength={10}
+  onChange={(e) =>
+    setPhone(e.target.value.replace(/\D/g, ""))
+  }
+  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-white placeholder-slate-500 outline-none transition focus:border-sky-400"
+/>
     </div>
   </div>
 
@@ -159,7 +196,7 @@ return (
               </label>
               <input
                 type="text"
-                placeholder="Mumbai, Pune, Thane..."
+                placeholder=""
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-white placeholder-slate-500 outline-none transition focus:border-sky-400"

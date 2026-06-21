@@ -13,26 +13,27 @@ const navItems = [
 function Navbar() {
 const [open, setOpen] = useState(false);
 
-return ( <header className="fixed inset-x-0 top-0 z-50"> <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8"> <div className="flex items-center justify-between rounded-2xl border border-yellow-500/20 bg-slate-950/95 px-4 py-3 shadow-2xl backdrop-blur-xl sm:px-6 sm:py-4">
+return ( <header className="fixed inset-x-0 top-0 z-50">
+   <div className="mx-auto max-w-7xl px-4 pt-5 sm:px-6 lg:px-8"> 
+    <div className="flex items-center justify-between rounded-2xl border border-yellow-500/20 bg-slate-950/95 px-4 py-3 shadow-2xl backdrop-blur-xl sm:px-6 sm:py-4">
 
 
       {/* Logo */}
-      <Link to="/" className="flex items-center gap-3">
+      <Link to="/" className="flex items-center">
         <img
           src="/logo.jpeg"
           alt="Basil Manpower"
-          className="h-10 w-auto object-contain sm:h-14"
+          className="h-9 w-auto object-contain sm:h-12"
         />
+<div>
+  <h1 className="text-sm font-bold text-white sm:text-lg">
+    BASIL MANPOWER
+  </h1>
 
-        <div className="hidden sm:block">
-          <h1 className="text-lg font-bold text-white">
-            BASIL MANPOWER
-          </h1>
-
-          <p className="text-xs text-yellow-400">
-            Premium Recruitment Network
-          </p>
-        </div>
+  <p className="text-[10px] text-yellow-400 sm:text-xs">
+    Premium Recruitment Network
+  </p>
+</div>
       </Link>
 
       {/* Desktop Navigation */}

@@ -109,75 +109,112 @@ const Requirements = () => {
           Requirements Management
         </h1>
 
-        {/* Table */}
-        <div className="mb-6 overflow-x-auto rounded-xl bg-white shadow">
-          <table className="w-full">
-            <thead className="bg-slate-100">
-              <tr>
-                <th className="p-4 text-left">Company</th>
-                <th className="p-4 text-left">Role</th>
-                <th className="p-4 text-left">Location</th>
-                <th className="p-4 text-left">Openings</th>
-                <th className="p-4 text-left">Experience</th>
-                <th className="p-4 text-left">Gender</th>
-                <th className="p-4 text-left">Action</th>
-              </tr>
-            </thead>
+       {/* Desktop Table */}
 
-            <tbody>
-              {requirements.map((item) => (
-                <tr
-                  key={item.id}
-                  className="border-b hover:bg-slate-50"
-                >
-                  <td className="p-4">
-                    {item.company_name}
-                  </td>
+<div className="hidden lg:block mb-6 overflow-x-auto rounded-xl bg-white shadow">
+  <table className="w-full">
+    <thead className="bg-slate-100">
+      <tr>
+        <th className="p-4 text-left">Company</th>
+        <th className="p-4 text-left">Role</th>
+        <th className="p-4 text-left">Location</th>
+        <th className="p-4 text-left">Openings</th>
+        <th className="p-4 text-left">Experience</th>
+        <th className="p-4 text-left">Gender</th>
+        <th className="p-4 text-left">Action</th>
+      </tr>
+    </thead>
 
-                  <td className="p-4">
-                    <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-700">
-                      {item.role}
-                    </span>
-                  </td>
+<tbody>
+  {requirements.map((item) => (
+    <tr key={item.id} className="border-b hover:bg-slate-50">
+      <td className="p-4">{item.company_name}</td>
 
-                  <td className="p-4">
-                    {item.location}
-                  </td>
+      <td className="p-4">
+        <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-700">
+          {item.role}
+        </span>
+      </td>
 
-                  <td className="p-4">
-                    {item.openings}
-                  </td>
+      <td className="p-4">{item.location}</td>
+      <td className="p-4">{item.openings}</td>
+      <td className="p-4">{item.experience}</td>
+      <td className="p-4">{item.gender}</td>
 
-                  <td className="p-4">
-                    {item.experience}
-                  </td>
+      <td className="p-4">
+        <div className="flex gap-2">
+          <button
+            onClick={() => editRequirement(item)}
+            className="rounded bg-green-600 px-3 py-1 text-white"
+          >
+            Edit
+          </button>
 
-                  <td className="p-4">
-                    {item.gender}
-                  </td>
-
-                  <td className="p-4">
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => editRequirement(item)}
-                        className="rounded bg-green-600 px-3 py-1 text-white hover:bg-green-700"
-                      >
-                        Edit
-                      </button>
-
-                      <button
-                        onClick={() => deleteRequirement(item.id)}
-                        className="rounded bg-red-600 px-3 py-1 text-white hover:bg-red-700"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <button
+            onClick={() => deleteRequirement(item.id)}
+            className="rounded bg-red-600 px-3 py-1 text-white"
+          >
+            Delete
+          </button>
         </div>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
+  </table>
+</div>
+
+{/* Mobile Cards */}
+
+<div className="mb-6 space-y-4 lg:hidden">
+  {requirements.map((item) => (
+    <div
+      key={item.id}
+      className="rounded-2xl border bg-white p-4 shadow"
+    >
+      <div className="flex items-center justify-between">
+        <h3 className="font-bold text-lg">
+          {item.company_name}
+        </h3>
+    <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-700">
+      {item.openings} Open
+    </span>
+  </div>
+
+  <div className="mt-3 flex flex-wrap gap-2 text-sm">
+    <span className="rounded-full bg-yellow-100 px-3 py-1">
+      {item.role}
+    </span>
+
+    <span>📍 {item.location}</span>
+
+    <span>🎓 {item.experience}</span>
+
+    <span>👤 {item.gender}</span>
+  </div>
+
+  <div className="mt-4 flex gap-2">
+    <button
+      onClick={() => editRequirement(item)}
+      className="flex-1 rounded-xl bg-green-600 py-2 text-white"
+    >
+      Edit
+    </button>
+
+    <button
+      onClick={() => deleteRequirement(item.id)}
+      className="flex-1 rounded-xl bg-red-600 py-2 text-white"
+    >
+      Delete
+    </button>
+  </div>
+</div>
+
+))}
+
+</div>
+
 
         {/* Form */}
         <form
