@@ -12,7 +12,6 @@ import Dashboard from './admin/Dashboard';
 import Requirements from "./admin/Requirements";
 import Candidates from "./admin/Candidates";
 import Messages from "./admin/Messages";
-import Settings from "./admin/Settings";
 import { useEffect, useState } from "react";
 
 import { supabase } from "./services/supabase";
@@ -80,11 +79,7 @@ const isAdminPage =
       <Messages />
     </ProtectedRoute>
   } />
-<Route path="/admin/settings" element={
-    <ProtectedRoute>
-      <Settings />
-    </ProtectedRoute>
-  } />
+
 </Routes>
       </main>
       {!isAdminPage && <Footer />}

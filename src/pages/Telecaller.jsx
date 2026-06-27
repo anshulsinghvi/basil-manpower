@@ -9,100 +9,110 @@ const [experience, setExperience] = useState("Fresher");
 const [preferredLocation, setPreferredLocation] = useState("");
 const [role, setRole] = useState("");
 const [previousWork, setPreviousWork] = useState("");
-
+const [loading, setLoading] = useState(false);
 const handleSubmit = async () => {
-  if (!role.trim()) {
-    alert("Please enter the role you are applying for");
-    return;
-  }
+if (loading) return;
 
-  if (!fullName.trim()) {
-    alert("Please enter your full name");
-    return;
-  }
+if (!role.trim()) {
+alert("Please enter the role you are applying for");
+return;
+}
 
-  if (fullName.trim().length < 3) {
-    alert("Full name must be at least 3 characters");
-    return;
-  }
+if (!fullName.trim()) {
+alert("Please enter your full name");
+return;
+}
 
-  if (!phone) {
-    alert("Please enter mobile number");
-    return;
-  }
+if (fullName.trim().length < 3) {
+alert("Full name must be at least 3 characters");
+return;
+}
 
-  if (!/^[6-9]\d{9}$/.test(phone)) {
-    alert("Please enter a valid 10-digit mobile number");
-    return;
-  }
+if (!/^[6-9]\d{9}$/.test(phone)) {
+alert("Please enter a valid 10-digit mobile number");
+return;
+}
 
-  if (!email.trim()) {
-    alert("Please enter email address");
-    return;
-  }
+if (!/\S+@\S+.\S+/.test(email)) {
+alert("Please enter a valid email address");
+return;
+}
 
-  if (!/\S+@\S+\.\S+/.test(email)) {
-    alert("Please enter a valid email address");
-    return;
-  }
+if (!location.trim()) {
+alert("Please enter current location");
+return;
+}
 
-  if (!location.trim()) {
-    alert("Please enter current location");
-    return;
-  }
+if (!preferredLocation.trim()) {
+alert("Please enter preferred work location");
+return;
+}
 
-  if (!preferredLocation.trim()) {
-    alert("Please enter preferred work location");
-    return;
-  }
+if (!previousWork.trim()) {
+alert("Please enter previous work details");
+return;
+}
 
-  if (!previousWork.trim()) {
-    alert("Please enter previous work details");
-    return;
-  }
+const lastApply = localStorage.getItem("lastApply");
 
-  const { data: existing } = await supabase
-    .from("candidates")
-    .select("id")
-    .eq("phone", phone)
-    .maybeSingle();
+if (
+lastApply &&
+Date.now() - Number(lastApply) < 60000
+) {
+alert("Please wait 1 minute before applying again.");
+return;
+}
 
-  if (existing) {
-    alert("This mobile number is already registered");
-    return;
-  }
+setLoading(true);
 
-  const { error } = await supabase
-    .from("candidates")
-    .insert([
-      {
-        full_name: fullName.trim(),
-        phone,
-        email: email.trim(),
-        role: role.trim(),
-        location: location.trim(),
-        experience,
-        preferred_location: preferredLocation.trim(),
-        previous_work: previousWork.trim(),
-      },
-    ]);
+const { data: existing } = await supabase
+.from("candidates")
+.select("id")
+.eq("phone", phone)
+.maybeSingle();
 
-  if (error) {
-    alert(error.message);
-    return;
-  }
+if (existing) {
+setLoading(false);
+alert("This mobile number is already registered");
+return;
+}
 
-  alert("Registration Successful ✅");
+const { error } = await supabase
+.from("candidates")
+.insert([
+{
+full_name: fullName.trim(),
+phone,
+email: email.trim(),
+role: role.trim(),
+location: location.trim(),
+experience,
+preferred_location: preferredLocation.trim(),
+previous_work: previousWork.trim(),
+},
+]);
 
-  setFullName("");
-  setPhone("");
-  setEmail("");
-  setRole("");
-  setLocation("");
-  setExperience("Fresher");
-  setPreferredLocation("");
-  setPreviousWork("");
+setLoading(false);
+
+if (error) {
+alert(error.message);
+return;
+}
+
+localStorage.setItem("lastApply", Date.now());
+
+alert("Registration Successful ✅");
+
+setFullName("");
+setPhone("");
+setEmail("");
+setRole("");
+setLocation("");
+setExperience("");
+setPreferredLocation("");
+setPreviousWork("");
 };
+
   
 return (
   <section className="relative overflow-hidden bg-slate-950 px-4 py-20 sm:px-6 lg:px-8">
@@ -264,10 +274,11 @@ return (
 
           <button
   type="button"
+  disabled={loading}
   onClick={handleSubmit}
-  className="w-full rounded-2xl bg-gradient-to-r from-sky-500 to-cyan-500 px-6 py-4 text-base font-semibold text-white shadow-xl shadow-sky-500/25 transition-all duration-300 hover:-translate-y-1"
+  className="w-full rounded-2xl bg-gradient-to-r from-sky-500 to-cyan-500 px-6 py-4 text-base font-semibold text-white shadow-xl shadow-sky-500/25 transition-all duration-300 hover:-translate-y-1 disabled:cursor-not-allowed disabled:opacity-50"
 >
-  Register Now
+  {loading ? "Submitting..." : "Register Now"}
 </button>
         </form>
       </div>

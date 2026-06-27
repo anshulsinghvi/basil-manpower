@@ -5,7 +5,7 @@ import {
   Briefcase,
   Users,
   MessageSquare,
-  Settings,
+
   LogOut,
 } from "lucide-react";
 
@@ -39,11 +39,7 @@ const AdminSidebar = () => {
       path: "/admin/messages",
       icon: <MessageSquare size={18} />,
     },
-    {
-      name: "Settings",
-      path: "/admin/settings",
-      icon: <Settings size={18} />,
-    },
+    
   ];
 
   return (

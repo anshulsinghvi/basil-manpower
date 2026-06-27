@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-function Hero({ websiteStats }) {
+function Hero() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -17,7 +17,7 @@ function Hero({ websiteStats }) {
         </div>
 
         <div className="relative mx-auto max-w-7xl">
-          <div className="grid items-center gap-8 lg:grid-cols-2">
+          <div className="grid items-start gap-8 lg:grid-cols-2">
 
             {/* Left Content */}
             <div>
@@ -39,61 +39,60 @@ function Hero({ websiteStats }) {
                 experiences across India.
               </p>
 
-              {/* Buttons */}
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  to="/developers"
-                  className="w-full rounded-2xl border border-yellow-500 px-8 py-4 text-center font-semibold text-yellow-400 transition-all hover:bg-yellow-500 hover:text-black sm:w-auto"
-                >
-                  Hire Staff
-                </Link>
+             {/* Roles */}
+<div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-3">
+  {[
+    "Tele-callers",
+    "Valets",
+    "Hostesses",
+    "Housekeeping",
+    "GRE",
+    "Anchors",
+  ].map((role) => (
+    <span
+      key={role}
+      className="rounded-full border border-yellow-500/20 bg-yellow-500/10 px-5 py-2.5 text-sm font-medium text-yellow-300 transition-all duration-300 hover:border-yellow-400 hover:bg-yellow-500/20 hover:scale-105"
+    >
+      {role}
+    </span>
+  ))}
+</div>
 
-                <Link
-                  to="/telecaller"
-                  className="w-full rounded-2xl bg-yellow-500 px-8 py-4 text-center font-semibold text-black transition-all hover:bg-yellow-400 sm:w-auto"
-                >
-                  Apply For Jobs
-                </Link>
-              </div>
+{/* Buttons */}
+<div className="mt-8 flex flex-col sm:flex-row gap-4">
+  <Link
+    to="/developers"
+    className="w-full sm:w-56 rounded-2xl border-2 border-yellow-500 px-8 py-4 text-center font-semibold text-yellow-400 transition-all duration-300 hover:bg-yellow-500 hover:text-black hover:scale-105"
+  >
+    Hire Staff
+  </Link>
 
-              {/* Roles */}
-              <div className="mt-5 flex flex-wrap gap-2">
-                {[
-                  "Tele-callers",
-                  "Valets",
-                  "Hostesses",
-                  "Housekeeping",
-                  "GRE",
-                  "Anchors",
-                ].map((role) => (
-                  <span
-                    key={role}
-                    className="rounded-full border border-yellow-500/20 bg-yellow-500/10 px-4 py-2 text-sm text-yellow-300"
-                  >
-                    {role}
-                  </span>
-                ))}
-              </div>
-            </div>
-
+  <Link
+    to="/telecaller"
+    className="w-full sm:w-56 rounded-2xl bg-yellow-500 px-8 py-4 text-center font-semibold text-black transition-all duration-300 hover:bg-yellow-400 hover:scale-105"
+  >
+    Apply For Jobs
+  </Link>
+</div>
+</div>
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 lg:gap-6 lg:max-w-xl lg:ml-auto">
+            <div className="grid grid-cols-2 gap-4 lg:gap-6 lg:max-w-xl lg:ml-auto self-start">
 
       <div className="rounded-2xl border border-yellow-500/20 bg-white/5 p-4 backdrop-blur">
                 <p className="text-xs uppercase tracking-[0.25em] text-yellow-400 sm:text-sm">
                   Verified Candidates
                 </p>
                 <h3 className="mt-2 text-3xl font-bold text-white sm:text-5xl">
-                  {websiteStats.telecallers_count}
+                  16,500+
                 </h3>
               </div>
 
               <div className="rounded-2xl border border-yellow-500/20 bg-white/5 p-4 sm:p-6 backdrop-blur">
                 <p className="text-xs uppercase tracking-[0.25em] text-yellow-400 sm:text-sm">
-                  Developers Served
+                  Developers 
                 </p>
                 <h3 className="mt-2 text-3xl font-bold text-white sm:text-5xl">
-                  {websiteStats.developers_count}
+                  50+
                 </h3>
               </div>
 
@@ -102,16 +101,16 @@ function Hero({ websiteStats }) {
                   Specialized Roles
                 </p>
                 <h3 className="mt-2 text-3xl font-bold text-white sm:text-5xl">
-                  {websiteStats.specialized_roles}
+                 6+
                 </h3>
               </div>
 
               <div className="rounded-2xl border border-yellow-500/20 bg-white/5 p-4 sm:p-6 backdrop-blur">
                 <p className="text-xs uppercase tracking-[0.25em] text-yellow-400 sm:text-sm">
-                  Experience
+                  Decade Experience
                 </p>
                 <h3 className="mt-2 text-3xl font-bold text-white sm:text-5xl">
-                  {websiteStats.experience_years}
+                  2+
                 </h3>
               </div>
 
@@ -119,6 +118,7 @@ function Hero({ websiteStats }) {
 
           </div>
         </div>
+        
       </section>
     </motion.div>
   );
