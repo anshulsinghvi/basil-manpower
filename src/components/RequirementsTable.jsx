@@ -39,7 +39,7 @@ const RequirementsTable = () => {
       </div>
 
       <div className="space-y-4">
-        {requirements.slice(0, 1).map((req) => (
+        {requirements.slice(0, 3).map((req) => (
           <div
             key={req.id}
             className="grid items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-lg lg:grid-cols-[180px_120px_140px_120px_140px_120px_140px]"
@@ -72,9 +72,13 @@ const RequirementsTable = () => {
               </span>
             </div>
 
-            <button className="rounded-xl bg-slate-950 px-5 py-2 text-sm font-semibold text-white transition hover:bg-yellow-500 hover:text-black">
-              Apply Now
-            </button>
+            <Link
+  to="/telecaller"
+  state={{ requirement: req }}
+  className="rounded-xl bg-slate-950 px-5 py-2 text-sm font-semibold text-white text-center transition hover:bg-yellow-500 hover:text-black"
+>
+  Apply Now
+</Link>
           </div>
         ))}
       </div>
